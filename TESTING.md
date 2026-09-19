@@ -10,8 +10,12 @@
 
 ### 方案 A：Visual Studio（最推荐，作业语境就是 Windows）
 1. 下载安装 **Visual Studio 2022 社区版**（免费）：https://visualstudio.microsoft.com/zh-hans/downloads/
-2. 安装时勾选 **"使用 C++ 的桌面开发"** 工作负载（会自动带上 MSVC、CMake、Windows SDK）。
-3. 安装完即可，不需要额外配置。
+2. 安装时勾选工作负荷 **"使用 C++ 的桌面开发"**（英文界面：*Desktop development with C++*）。在该工作负荷的"安装详细信息"里，**确认以下组件已勾选**（默认即勾，勿取消）：
+   - ✅ **MSVC v143 - VS 2022 C++ x64/x86 生成工具**（编译器本体，必须有）
+   - ✅ **Windows 11 SDK**（或 Windows 10 SDK，选最新版）
+   - ✅ **C++ CMake 工具**（*C++ CMake tools for Windows*）—— 本项目用 CMake，**必须有**
+3. **不需要**勾选：Python 开发（本 C++ 作业用不上）、Linux 开发、Clang 等，勾了只会占空间。
+4. 安装完即可，不需要额外配置；后续用 VS 打开项目根目录（含 `CMakeLists.txt`）就能编译。
 
 ### 方案 B：只装构建工具（轻量）
 1. 安装 **Visual Studio Build Tools 2022**，同样勾选 "使用 C++ 的桌面开发"。

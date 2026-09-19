@@ -29,6 +29,8 @@ public:
 
     bool operator<(const Fraction& o) const { return num * o.den < o.num * den; }
     bool operator<=(const Fraction& o) const { return num * o.den <= o.num * den; }
+    bool operator>(const Fraction& o) const { return num * o.den > o.num * den; }
+    bool operator>=(const Fraction& o) const { return num * o.den >= o.num * den; }
     bool operator==(const Fraction& o) const { return num * o.den == o.num * den; }
     bool isZero() const { return num == 0; }
 
