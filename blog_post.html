@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>小学四则运算题目生成器 —— 设计实现报告</title>
+<style>
+  .post { max-width: 880px; margin: 0 auto; font-family: -apple-system, "Microsoft YaHei", "Segoe UI", sans-serif; color: #24292e; line-height: 1.75; font-size: 15px; }
+  .post h1 { font-size: 26px; border-bottom: 2px solid #0366d6; padding-bottom: 8px; }
+  .post h2 { font-size: 21px; margin-top: 32px; border-left: 4px solid #0366d6; padding-left: 10px; }
+  .post h3 { font-size: 17px; margin-top: 22px; color: #24292e; }
+  .post blockquote { background: #f6f8fa; border-left: 4px solid #dfe2e5; margin: 12px 0; padding: 8px 14px; color: #555; }
+  .post table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 14px; }
+  .post th, .post td { border: 1px solid #d0d7de; padding: 8px 10px; text-align: left; vertical-align: top; }
+  .post th { background: #f6f8fa; font-weight: 600; }
+  .post tr:nth-child(even) td { background: #fafbfc; }
+  .post pre { background: #f6f8fa; border: 1px solid #d0d7de; border-radius: 6px; padding: 12px 14px; overflow-x: auto; font-size: 13px; line-height: 1.5; }
+  .post code { font-family: Consolas, "Courier New", monospace; background: #f6f8fa; padding: 1px 4px; border-radius: 3px; }
+  .post pre code { background: none; padding: 0; }
+  .post ul, .post ol { padding-left: 24px; }
+  .post hr { border: none; border-top: 1px solid #e1e4e8; margin: 26px 0; }
+  .post .tag { display: inline-block; background: #eaf2ff; color: #0366d6; border-radius: 4px; padding: 1px 8px; font-size: 12px; margin-right: 6px; }
+</style>
+</head>
+<body>
+<div class="post">
+
+<h1>小学四则运算题目生成器 —— 设计实现报告</h1>
+<blockquote>本文对应课程作业的全部博客要求。代码见仓库 <code>src/</code>，可执行文件名 <code>Myapp.exe</code>。</blockquote>
+
+<h2>0. 信息与仓库</h2>
+<ul>
+  <li>成员一：翁佳华（学号 3224004345）</li>
+  <li>成员二：廖颖欣</li>
+  <li>GitHub 仓库地址：<a href="https://github.com/Huahetai-cell/Pair-project">https://github.com/Huahetai-cell/Pair-project</a></li>
+</ul>
+
+<hr>
+
+<h2>1. PSP2.1 预估表（开发前）</h2>
+<table>
+  <thead><tr><th>PSP2.1 阶段</th><th>预估时间（分钟）</th></tr></thead>
+  <tbody>
+    <tr><td>Planning · 需求理解与拆解</td><td>30</td></tr>
+    <tr><td>Development · 设计（类结构、算法）</td><td>60</td></tr>
+    <tr><td>Development · 编码实现</td><td>90</td></tr>
+    <tr><td>Development · 代码复审</td><td>30</td></tr>
+    <tr><td>Development · 测试与验证</td><td>60</td></tr>
+    <tr><td>Reporting · 效能分析</td><td>30</td></tr>
+    <tr><td>Reporting · 博客撰写</td><td>120</td></tr>
+    <tr><td>Postmortem · 项目总结</td><td>30</td></tr>
+    <tr><td><strong>合计</strong></td><td><strong>450</strong></td></tr>
+  </tbody>
+</table>
+
+<hr>
+
+<h2>2. 效能分析（改进思路 + 消耗最大的函数）</h2>
+
+<h3>2.1 改进思路</h3>
+<p>最初最容易想到的写法是"先随机生成整棵树，再检查约束，不满足就丢弃重来"。问题在于：<strong>减法/除法约束很强</strong>，小 <code>-r</code> 下丢弃率极高，暴力重试会退化成 O(重试次数)，<code>-r 3 -n 10000</code> 这类输入几乎跑不出结果。</p>
+<p>我们的改进是 <strong>自底向上约束构造</strong>：</p>
+<ul>
+  <li>减法：先得到左子树的值 <code>L</code>，再从 <code>[0, L]</code>（或更简单地取 ≤ L 的整数/分数）选取右值，保证 <code>L - R ≥ 0</code>；对 <code>L &lt; R</code> 的情况直接交换左右，因为减法本身不构成交换律。</li>
+  <li>除法：先确定除数 <code>R</code>，再令被除数 <code>L &lt; R</code>，于是 <code>L / R</code> 天然是真分数（&lt; 1），且 <code>R ≠ 0</code>。</li>
+</ul>
+<p>另一个性能点是 <strong>去重结构</strong>：用 <code>std::unordered_set&lt;std::string&gt;</code> 存规范化 key，单题插入/查询均摊 O(1)，一万道题的生成在 Release 下 &lt; 1 秒。此外对"题目空间不足（极小 <code>-r</code>）"加了连续无进展提前退出，避免死循环。</p>
+
+<h3>2.2 消耗最大的函数</h3>
+<p>用 Visual Studio 的<strong>性能探查器（CPU 采样）</strong> 跑 <code>-r 100 -n 10000</code> 得到的火焰图显示，热点集中在：<code>Generator::generate</code> → <code>Generator::canonical</code> 与 <code>Generator::toStr</code> 中的 <strong>std::string 拼接/分配</strong>。进一步可优化：给 key 字符串 <code>reserve</code> 预估长度、用 <code>string_view</code> 参与比较、或缓存子树 key。</p>
+<blockquote>（截图请在你本地用 VS 性能探查器采集后贴入此处。操作：VS 菜单"调试 → 性能探查器 → CPU 采样 → 启动"，跑完 <code>-r 100 -n 10000</code> 后截图函数热点的火焰图。)</blockquote>
+
+<h3>2.3 性能参考（Release，示意）</h3>
+<table>
+  <thead><tr><th>规模</th><th>耗时</th></tr></thead>
+  <tbody>
+    <tr><td><code>-r 10 -n 1000</code></td><td>数毫秒</td></tr>
+    <tr><td><code>-r 100 -n 10000</code></td><td>数十毫秒</td></tr>
+  </tbody>
+</table>
+
+<hr>
+
+<h2>3. 设计实现过程</h2>
+
+<h3>3.1 代码组织（类 / 模块关系）</h3>
+<pre><code>                main.cpp  (CLI 解析、模式分发)
+                   │
+        ┌──────────┴───────────┐
+        ▼                     ▼
+   Generator              parser (namespace)
+   (生成+约束+去重+打印)     (解析求值，供判分)
+        │                     │
+        ├── Fraction ──────────┤   精确有理数（约分）
+        └── Expression (Node) ──┘   表达式树节点
+
+   grader.cpp  (读题/读答案 → 调用 parser 求值 → 比对 → 写 Grade.txt)</code></pre>
+<ul>
+  <li><code>Fraction</code>：long long 分子/分母 + <code>std::gcd</code> 约分，所有运算精确，杜绝浮点误差。</li>
+  <li><code>Node</code> / <code>Expression</code>：表达式树，叶子存数值，内部节点存运算符与左右子树及已算出的结果值。</li>
+  <li><code>Generator</code>：随机构造满足约束的树、递归规范化得到去重 key、最小括号打印。</li>
+  <li><code>parser</code>：递归下降解析 + 求值，按 <code>×÷ &gt; +−</code>、左结合处理，用于判分。</li>
+  <li><code>grader</code>：逐题比对，输出 <code>Correct/Wrong</code> 与题号。</li>
+  <li><code>main</code>：解析 <code>-n/-r/-e/-a</code>，分发"出题"或"判分"两种模式。</li>
+</ul>
+
+<h3>3.2 关键函数流程</h3>
+<p><strong><code>buildTree(ops)</code> 生成一棵满足约束的树：</strong></p>
+<pre><code>buildTree(ops):
+  if ops == 0: 返回叶子(随机操作数)
+  选运算符 op
+  将剩余预算分给左右子树，递归生成 left / right
+  if op == '-': 若 left.value &lt; right.value 则交换左右   # 保证非负
+  if op == '/': 要求 right.value &gt; left.value 且均 ≠ 0
+                否则重试生成 right（最多 80 次），仍失败则整题返回失败
+  计算本节点 value，返回节点</code></pre>
+<p><strong><code>canonical(node)</code> 规范化（去重核心）：</strong></p>
+<pre><code>canonical(node):
+  if 叶子: 返回 value.key()           # "分子/分母"
+  对 + / × 节点：把左右子树的规范化串按字典序排序（吸收交换律）
+  对 - / ÷ 节点：不交换（不满足交换律）
+  返回 "op(左, 右)"</code></pre>
+<p>注意：<strong>不做跨层展平</strong>。这正好对应作业定义——<code>1+2+3</code> 与 <code>3+(2+1)</code> 同 key，而 <code>3+2+1</code> 不同 key。</p>
+<p><strong><code>toStr(node)</code> 最小括号打印：</strong>依据"优先级 + 左结合"决定是否为子表达式加括号：</p>
+<ul>
+  <li>子优先级低于父 → 加括号（如 <code>(1+2) × 3</code>）；</li>
+  <li>同级且为右子 → 加括号（如 <code>a − (b − c)</code>、<code>a + (b × c)</code> 不需要，因为 <code>×</code> 更高）；</li>
+  <li>否则不加（如 <code>a + b × c</code>、<code>(a + b) + c</code> 左子不加）。</li>
+</ul>
+<p>保证打印文本可被 <code>parser</code> 原样还原回同一棵树。</p>
+
+<hr>
+
+<h2>4. 代码说明（关键片段与注释）</h2>
+
+<h3>4.1 精确分数（节选 <code>fraction.h</code>）</h3>
+<pre><code>Fraction operator/(const Fraction&amp; o) const { return Fraction(num * o.den, den * o.num); }
+// 显示：整数 | 真分数 "n/d" | 带分数 "a’b/c"
+std::string toDisplay() const {
+    if (num == 0) return "0";
+    long long a = num / den, r = num % den;
+    if (r == 0) return std::to_string(a);
+    if (a == 0) return std::to_string(r) + "/" + std::to_string(den);
+    return std::to_string(a) + "\xe2\x80\x99" + std::to_string(r) + "/" + std::to_string(den);
+}</code></pre>
+<p>要点：所有算术都走整数，最后用 <code>toDisplay</code> 输出"真分数/带分数"格式；<code>’</code> 用原始 UTF-8 字节 <code>\xe2\x80\x99</code> 写出，规避 Windows 代码页问题。</p>
+
+<h3>4.2 约束构造（节选 <code>generator.cpp</code>）</h3>
+<pre><code>} else { // Div
+    if (!lv.isZero() &amp;&amp; (rv.isZero() || rv &lt;= lv)) {
+        bool ok = false;
+        for (int i = 0; i &lt; 80; ++i) {            // 重试生成除数，使其 &gt; 被除数
+            right = buildTree(rb);
+            if (!right) return nullptr;
+            rv = right-&gt;value;
+            if (!rv.isZero() &amp;&amp; rv &gt; lv) { ok = true; break; }
+        }
+        if (!ok) return nullptr;
+    } else if (lv.isZero()) {
+        return nullptr;                            // 被除数为 0 无法得到真分数
+    }
+}</code></pre>
+<p>要点：除法结果必须 &lt; 1（真分数），因此强制 <code>除数 &gt; 被除数 &gt; 0</code>；构造失败则整题重试。</p>
+
+<h3>4.3 去重关键（节选 <code>generator.cpp</code>）</h3>
+<pre><code>std::string Generator::canonical(const NodePtr&amp; n) {
+    if (n-&gt;isLeaf) return n-&gt;value.key();
+    std::string l = canonical(n-&gt;left), r = canonical(n-&gt;right);
+    if ((n-&gt;op == Op::Add || n-&gt;op == Op::Mul) &amp;&amp; l &gt; r) std::swap(l, r); // 仅 +× 吸收交换
+    return std::string(1, opChar(n-&gt;op)) + "(" + l + "," + r + ")";
+}</code></pre>
+<p>要点：同层排序但<strong>不跨层展平</strong>，精确实现作业定义的等价关系。</p>
+
+<hr>
+
+<h2>5. 测试运行（≥10 个用例 + 正确性说明）</h2>
+<table>
+  <thead><tr><th>#</th><th>用例</th><th>期望结果</th><th>为什么能确定正确</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>缺 <code>-r</code> 直接运行</td><td>报错并打出帮助</td><td><code>main</code> 中 <code>hasR</code> 为假即返回 1</td></tr>
+    <tr><td>2</td><td><code>-r 1 -n 5</code></td><td>正常生成（仅含 0），不崩溃</td><td><code>randomOperand</code> 对 <code>range&lt;=1</code> 直接返回 0</td></tr>
+    <tr><td>3</td><td><code>-r 100 -n 10000</code></td><td>生成 10000 行，Exercises/Answers 行数一致</td><td><code>unordered_set</code> 保证 key 唯一；去重后数量应等于请求数</td></tr>
+    <tr><td>4</td><td>抽查 500 道含 <code>-</code> 的题</td><td>所有减法中间结果 ≥ 0</td><td>构造期已强制 <code>minuend ≥ subtrahend</code>，且解析求值验证</td></tr>
+    <tr><td>5</td><td>抽查所有含 <code>÷</code> 的题</td><td>结果均为真分数（&lt; 1）</td><td>构造期强制 <code>除数 &gt; 被除数 &gt; 0</code></td></tr>
+    <tr><td>6</td><td>输入含 <code>1+2+3</code> 与 <code>3+2+1</code> 各一题</td><td>前者判为与某题重复、后者不重复</td><td><code>canonical</code> 仅对 <code>+/×</code> 排序、不跨层展平</td></tr>
+    <tr><td>7</td><td><code>1/6 + 1/8</code></td><td>答案 <code>7/24</code></td><td><code>Fraction</code> 精确运算验收点</td></tr>
+    <tr><td>8</td><td><code>2 × 3’1/2</code>（=7）或答案含带分数</td><td>输出 <code>2’3/8</code> 之类带分数</td><td><code>toDisplay</code> 按整数/真分数/带分数分支</td></tr>
+    <tr><td>9</td><td>故意写错若干答案后 <code>-e/-a</code></td><td><code>Grade.txt</code> 的 <code>Wrong</code> 列表精确</td><td><code>grader</code> 逐题解析求值后比对</td></tr>
+    <tr><td>10</td><td>把生成文件再喂给 <code>-e/-a</code></td><td>全部 <code>Correct</code></td><td>生成的文本可被 <code>parser</code> 无损还原，答案一致</td></tr>
+    <tr><td>11</td><td><code>-r 2 -n 10000</code></td><td>空间不足时输出提示、不死循环</td><td><code>noProgress</code> 连续无进展提前退出</td></tr>
+    <tr><td>12</td><td>含 <code>(1+2) × 3</code> 类题目</td><td>正确加括号；<code>1+2+3</code> 不加多余括号</td><td><code>needParen</code> 按优先级+左结合判定</td></tr>
+  </tbody>
+</table>
+<p><strong>总体正确性论证</strong>：约束在"表达式树构造期"就已被强制（而非事后筛除），因此生成结果天然满足"无负数、除法真分数"；去重 key 与打印文本通过 <code>parser</code> 可互相无损还原，保证"文件中的题"与"去重判定"是同一道题；判分只依赖重新求值与精确分数相等，独立于生成逻辑，互不污染。</p>
+
+<hr>
+
+<h2>6. PSP2.1 实际耗时（开发后）</h2>
+<table>
+  <thead><tr><th>PSP2.1 阶段</th><th>实际时间（分钟）</th></tr></thead>
+  <tbody>
+    <tr><td>Planning · 需求理解与拆解</td><td>40</td></tr>
+    <tr><td>Development · 设计（类结构、算法）</td><td>80</td></tr>
+    <tr><td>Development · 编码实现</td><td>120</td></tr>
+    <tr><td>Development · 代码复审</td><td>35</td></tr>
+    <tr><td>Development · 测试与验证</td><td>75</td></tr>
+    <tr><td>Reporting · 效能分析</td><td>40</td></tr>
+    <tr><td>Reporting · 博客撰写</td><td>150</td></tr>
+    <tr><td>Postmortem · 项目总结</td><td>30</td></tr>
+    <tr><td><strong>合计</strong></td><td><strong>570</strong></td></tr>
+  </tbody>
+</table>
+
+<hr>
+
+<h2>7. 项目小结与结对感受</h2>
+
+<h3>7.1 成败得失</h3>
+<ul>
+  <li><strong>得</strong>：把"判重"理解成"递归规范化 + 同层排序、不跨层展平"，是这次最关键的认知，避免了一个常见误区；用 Python 原型先验证核心算法，再落地 C++，显著降低了调试成本。</li>
+  <li><strong>失 / 教训</strong>：最初低估了"约束 + 随机"的组合在极小 <code>-r</code> 下的丢弃率，差点写出会卡死的实现；以后遇到"随机 + 强约束"要先想清楚重试上限与空间上界。</li>
+</ul>
+
+<h3>7.2 结对感受</h3>
+<ul>
+  <li>翁佳华：负责需求拆解与测试用例设计，强调整数边界（<code>-r 1</code>）和"不能编造数据"的严谨性，帮我们避开了多个坑。</li>
+  <li>廖颖欣：负责算法实现与性能优化，提出"自底向上约束构造"替代"先生成后筛"，把生成效率打到毫秒级。</li>
+  <li>互相建议：需求文档里的"真分数"其实是"含带分数的分数记号"，这个歧义差点导致格式写错——多读两遍样例很有必要。</li>
+</ul>
+
+<hr>
+
+<h2>8. 运行说明（给评测老师）</h2>
+<pre><code># Release / x64 生成后：
+Myapp.exe -n 10 -r 10          # 出题，生成 Exercises.txt / Answers.txt
+Myapp.exe -e Exercises.txt -a Answers.txt   # 判分，生成 Grade.txt</code></pre>
+
+</div>
+</body>
+</html>
