@@ -7,7 +7,14 @@
       "project": "CMakeLists.txt",
       "projectTarget": "Myapp.exe (Myapp.exe)",
       "name": "Myapp.exe (Myapp.exe)",
-      "args": ["-r", "100", "-n", "10000"]
+      "args": ["-r", "100", "-n", "500000"]
+    },
+    {
+      "type": "default",
+      "project": "CMakeLists.txt",
+      "projectTarget": "Myapp (Myapp.exe)",
+      "name": "Myapp (Myapp.exe)",
+      "args": ["-r", "100", "-n", "500000"]
     }
   ]
 }
