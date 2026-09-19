@@ -12,6 +12,9 @@ GitHub：https://github.com/Huahetai-cell/Pair-project
   - `-n`：题目个数（可选，默认 10）
   - `-r`：**必填**，数值范围 `[0, r)`；缺失则报错并打印帮助
 - 判分：`Myapp.exe -e <题目文件> -a <答案文件>`
+- 性能基准：`Myapp.exe -b -r <数值范围> [-n <题目数>]`
+  - 内置计时三个热点阶段（构造树 / 规范化 / 格式化），输出 `Benchmark.txt`；
+  - 再用 `python perf_visualize.py` 生成 `perf_chart.svg` 性能分析图（零依赖，无需 matplotlib）。
 - 输出文件（写到程序当前目录）：
   - `Exercises.txt`：题目，每行形如 `1 + 2 + 3 =`
   - `Answers.txt`：对应答案（真分数 `3/5`，带分数 `2’3/8`）
@@ -51,6 +54,9 @@ Myapp.exe -n 10000 -r 100
 
 # 判分（与生成的文件或手造文件对比）
 Myapp.exe -e Exercises.txt -a Answers.txt
+
+# 性能基准（生成 Benchmark.txt，再用 perf_visualize.py 出图）
+Myapp.exe -b -r 100 -n 200000
 ```
 
 ## 边界说明

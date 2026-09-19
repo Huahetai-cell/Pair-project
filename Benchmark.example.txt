@@ -1,0 +1,7 @@
+# Myapp 性能基准 (Benchmark) - 示例数据（Python 原型测得，仅供演示绘图流程；
+# 正式提交请用 Myapp.exe -b 生成的真实 Benchmark.txt 重画）
+total_problems: 20000
+total_time_ms: 210.510
+build_ms: 133.351
+canonical_ms: 27.672
+tostr_ms: 49.488

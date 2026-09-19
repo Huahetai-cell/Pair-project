@@ -1,5 +1,6 @@
 #include "generator.h"
 #include <algorithm>
+#include <chrono>
 
 Generator::Generator(long long range, unsigned int seed) : range_(range), rng_(seed) {}
 
@@ -166,9 +167,12 @@ size_t Generator::generate(size_t n, std::vector<Problem>& out) {
     while (out.size() < n && attempts < cap && noProgress < 200000) {
         ++attempts;
         int t = topOps(rng_);
+        auto t0 = std::chrono::high_resolution_clock::now();
         NodePtr root = buildTree(t);
+        auto t1 = std::chrono::high_resolution_clock::now();
         if (!root) { ++noProgress; continue; }
         std::string k = canonical(root);
+        auto t2 = std::chrono::high_resolution_clock::now();
         if (seen.count(k)) { ++noProgress; continue; }
         seen.insert(k);
         noProgress = 0;
@@ -176,7 +180,13 @@ size_t Generator::generate(size_t n, std::vector<Problem>& out) {
         p.key = k;
         p.question = toStr(root, false) + " =";
         p.answer = root->value.toDisplay();
+        auto t3 = std::chrono::high_resolution_clock::now();
         out.push_back(p);
+        if (timing_) {
+            tBuild_ += std::chrono::duration_cast<std::chrono::microseconds>(t1 - t0).count();
+            tCanon_ += std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
+            tStr_   += std::chrono::duration_cast<std::chrono::microseconds>(t3 - t2).count();
+        }
     }
     return out.size();
 }

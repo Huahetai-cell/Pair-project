@@ -19,9 +19,17 @@ public:
     // 生成至多 n 道不重复题目；返回实际生成数量（空间不足时可能 < n）
     size_t generate(size_t n, std::vector<Problem>& out);
 
+    // 性能分析：开启后 generate() 会累计三个阶段（构造树 / 规范化 / 格式化）的耗时（微秒）
+    void enableTiming(bool on) { timing_ = on; }
+    void getTiming(long long& build, long long& canon, long long& str) const {
+        build = tBuild_; canon = tCanon_; str = tStr_;
+    }
+
 private:
     long long range_;
     std::mt19937 rng_;
+    bool timing_ = false;
+    long long tBuild_ = 0, tCanon_ = 0, tStr_ = 0;  // 累计耗时（微秒）
 
     Fraction randomOperand();                       // 按 -r 约束随机生成一个操作数
     Op pickOp();                                    // 随机选一个运算符

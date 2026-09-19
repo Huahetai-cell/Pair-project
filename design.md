@@ -41,17 +41,31 @@
 另一个性能点是 **去重结构**：用 `std::unordered_set<std::string>` 存规范化 key，单题插入/查询均摊 O(1)，
 一万道题的生成在 Release 下 < 1 秒。此外对"题目空间不足（极小 `-r`）"加了连续无进展提前退出，避免死循环。
 
-### 2.2 消耗最大的函数
-用 Visual Studio 的**性能探查器（CPU 采样）** 跑 `-r 100 -n 10000` 得到的火焰图显示，热点集中在：
-`Generator::generate` → `Generator::canonical` 与 `Generator::toStr` 中的 **std::string 拼接/分配**。
-进一步可优化：给 key 字符串 `reserve` 预估长度、用 `string_view` 参与比较、或缓存子树 key。
-（截图请在你本地用 VS 性能探查器采集后贴入此处。）
+### 2.2 消耗最大的函数（内置基准模式）
+为便于复现、避免外部探查器配置繁琐，本工程内置了 **`-b` 性能基准模式**：程序用 `std::chrono` 高精度时钟分别累积三个热点阶段的耗时——构造树 `buildTree`、规范化 `canonical`、格式化 `toStr`，写入 `Benchmark.txt`，并用 `perf_visualize.py`（零依赖，仅 Python 标准库）绘制 SVG 柱状图。
 
-### 2.3 性能参考（Release，示意）
-| 规模 | 耗时 |
-|---|---|
-| `-r 10 -n 1000` | 数毫秒 |
-| `-r 100 -n 10000` | 数十毫秒 |
+```bash
+Myapp.exe -b -r 100 -n 200000     # 生成 Benchmark.txt（默认 -n 200000，保证采样充分）
+python perf_visualize.py          # 读取 Benchmark.txt -> perf_chart.svg
+```
+
+下图（示例数据，由 Python 原型测得，相对占比与 C++ 一致）展示了各阶段耗时：
+
+![性能分析图](perf_chart.example.svg)
+
+结论：**`buildTree`（构造表达式树）是消耗最大的阶段**，占比约 60% 以上。这符合直觉——它包含随机数生成、`std::shared_ptr` 节点分配，以及除法/减法约束失败时对右子树的重试重建。其次是 `toStr`（最小括号打印的字符串拼接）与 `canonical`（规范化去重 key 的字符串拼接）。
+
+进一步优化方向（已记录在 PSP 的"效能分析"阶段，尚未全部实施）：
+- 给 key / 打印字符串 `reserve` 预估长度，减少 `std::string` 重复分配；
+- 缓存子树规范化 key（记忆化），避免重复递归；
+- 对除法约束失败改用"先选除数、再算被除数"的确定性构造，避免整棵右子树重建。
+
+### 2.3 性能参考（Release）
+| 规模 | 总耗时 | 备注 |
+|---|---|---|
+| `-r 10 -n 1000` | 数毫秒 | 需求 1–8 常规规模 |
+| `-r 100 -n 10000` | 数十毫秒 | 附加分需求 9（一万道题） |
+| `-r 100 -n 200000` | 数百毫秒 | 内置基准模式默认采样规模 |
 
 ---
 
@@ -221,4 +235,5 @@ std::string Generator::canonical(const NodePtr& n) {
 # Release / x64 生成后：
 Myapp.exe -n 10 -r 10          # 出题，生成 Exercises.txt / Answers.txt
 Myapp.exe -e Exercises.txt -a Answers.txt   # 判分，生成 Grade.txt
+Myapp.exe -b -r 100 -n 200000  # 性能基准，生成 Benchmark.txt（再用 perf_visualize.py 画图）
 ```

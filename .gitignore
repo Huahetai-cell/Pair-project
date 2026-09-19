@@ -5,4 +5,7 @@ cmake-build-*/
 Exercises.txt
 Answers.txt
 Grade.txt
+# 性能基准运行时产物（*.example.* 为示例演示，保留入库）
+Benchmark.txt
+perf_chart.svg
 .vs/
