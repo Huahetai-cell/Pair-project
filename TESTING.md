@@ -18,6 +18,12 @@
 2. 安装 **CMake**（https://cmake.org/download/，下 Windows x64 安装包，勾选加入 PATH）。
 3. 打开"开始菜单 → x64 Native Tools Command Prompt for VS 2022"（这是带编译环境的命令行）。
 
+### 方案 C：VS Code（最轻量，推荐给不想装完整 VS 的同学）
+VS Code 本身只是编辑器，还需要一个编译器后端，二选一：
+- **MSVC 后端**（推荐，和作业 `/utf-8` 最契合）：先按"方案 B"装好 Visual Studio Build Tools 2022（提供 MSVC + CMake），VS Code 直接复用它。
+- **MinGW-w64 后端**（纯开源）：装 MSYS2 后 `pacman -S mingw-w64-x86_64-gcc mingw-w64-x86_64-cmake`，并把 `mingw64/bin` 加入 PATH。
+然后在 VS Code 扩展商店安装 **C/C++** 和 **CMake Tools** 两个扩展即可。
+
 > 验证是否装好：在命令行输入 `cmake --version` 和 `cl`（或 `gcc --version`/`g++ --version`），能打印版本号即 OK。
 
 ---
@@ -54,6 +60,13 @@ cmake --build build --config Release
 - 用上面的命令：`build/Release/Myapp.exe`
 
 > 找不到 exe？在资源管理器里搜索 `Myapp.exe` 即可。
+
+### 用 VS Code 编译（图形化，最省心）
+1. 用 VS Code 打开项目根目录（含 `CMakeLists.txt` 的文件夹）。
+2. 底部状态栏点工具包（kit）选择编译器：MSVC 选 "Visual Studio Build Tools 2022 Release - amd64"，MinGW 选 "GCC ..."。
+3. 按 `Ctrl+Shift+P` → 搜 "CMake: Select Variant" → 选 **Release**；再 "CMake: Build"（或点底部 Build 按钮）。
+4. 产物：`build/Release/Myapp.exe`（MSVC）或 `build/Myapp.exe`（MinGW）。
+> 提示：VS Code 底部状态栏会显示当前 kit / variant / 目标，点一下就能切换，比命令行直观；运行命令同样用底部的 "Run" 或终端 `cd` 到 exe 目录执行。
 
 ---
 
