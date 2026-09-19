@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
+<html lang="zh-CN" data-page-node-id="xKVB4gXe6lYj0Xt7J2vEtl">
+<head data-page-node-id="DJyHkjUXmeB1JTph8lYHqg">
+<meta charset="UTF-8" data-page-node-id="qO9G7XFi5LCdYY2heHCbLx">
 <title>小学四则运算题目生成器 —— 设计实现报告</title>
 <style>
   .post { max-width: 880px; margin: 0 auto; font-family: -apple-system, "Microsoft YaHei", "Segoe UI", sans-serif; color: #24292e; line-height: 1.75; font-size: 15px; }
@@ -21,69 +21,69 @@
   .post .tag { display: inline-block; background: #eaf2ff; color: #0366d6; border-radius: 4px; padding: 1px 8px; font-size: 12px; margin-right: 6px; }
 </style>
 </head>
-<body>
-<div class="post">
+<body data-page-node-id="VAr1aIc6EMP4uaAsJPMAuJ">
+<div class="post" data-page-node-id="l1ATtOTM7ffOyktMY3UWO0">
 
-<h1>小学四则运算题目生成器 —— 设计实现报告</h1>
-<blockquote>本文对应课程作业的全部博客要求。代码见仓库 <code>src/</code>，可执行文件名 <code>Myapp.exe</code>。</blockquote>
+<h1 data-page-node-id="Iwf989vJ13m55cDYaKkX8U">小学四则运算题目生成器 —— 设计实现报告</h1>
+<blockquote data-page-node-id="Gp8u73fXGMQ8oHEaRkmR81">本文对应课程作业的全部博客要求。代码见仓库 <code data-page-node-id="u3jAmNR1Ei8HnZBfVZTSfR">src/</code>，可执行文件名 <code data-page-node-id="a7qKKvhiDXk3SUTh0CSmNW">Myapp.exe</code>。</blockquote>
 
-<h2>0. 信息与仓库</h2>
-<ul>
-  <li>成员一：翁佳华（学号 3224004345）</li>
-  <li>成员二：廖颖欣</li>
-  <li>GitHub 仓库地址：<a href="https://github.com/Huahetai-cell/Pair-project">https://github.com/Huahetai-cell/Pair-project</a></li>
+<h2 data-page-node-id="Ls8J7HUm7A9GJgw35vm4wS">0. 信息与仓库</h2>
+<ul data-page-node-id="LKC5wy0anpk0BmIg1eKyWv">
+  <li data-page-node-id="TEteAB97Y0CmUEN5Y0MtP6">成员一：翁佳华（学号 3224004345）</li>
+  <li data-page-node-id="sMaklk18WDcGPbEs5ZEXLO">成员二：廖颖欣</li>
+  <li data-page-node-id="YYcC0xYPKSOp8JinVjG5YZ">GitHub 仓库地址：<a href="https://github.com/Huahetai-cell/Pair-project" data-page-node-id="Gl9yODs1yijdeT9rrefELT">https://github.com/Huahetai-cell/Pair-project</a></li>
 </ul>
 
-<hr>
+<hr data-page-node-id="ELAVI1z5AVM8zxnhbKgsNC">
 
-<h2>1. PSP2.1 预估表（开发前）</h2>
-<table>
-  <thead><tr><th>PSP2.1 阶段</th><th>预估时间（分钟）</th></tr></thead>
-  <tbody>
-    <tr><td>Planning · 需求理解与拆解</td><td>30</td></tr>
-    <tr><td>Development · 设计（类结构、算法）</td><td>60</td></tr>
-    <tr><td>Development · 编码实现</td><td>90</td></tr>
-    <tr><td>Development · 代码复审</td><td>30</td></tr>
-    <tr><td>Development · 测试与验证</td><td>60</td></tr>
-    <tr><td>Reporting · 效能分析</td><td>30</td></tr>
-    <tr><td>Reporting · 博客撰写</td><td>120</td></tr>
-    <tr><td>Postmortem · 项目总结</td><td>30</td></tr>
-    <tr><td><strong>合计</strong></td><td><strong>450</strong></td></tr>
+<h2 data-page-node-id="3Rt5o8t7QlIhdMTVOUqhRy">1. PSP2.1 预估表（开发前）</h2>
+<table data-page-node-id="EmN4dNwNzuVwDdLE7I1FRs">
+  <thead data-page-node-id="6eSYa6YlnuWvJPw2Z5doZE"><tr data-page-node-id="R4raro8b5GRKV52KH2EPFL"><th data-page-node-id="K0rRJnXNqhOpEJqrVRhpMM">PSP2.1 阶段</th><th data-page-node-id="dcE12pmCcD0ZMC4PCU7o7k">预估时间（分钟）</th></tr></thead>
+  <tbody data-page-node-id="vYC8ahTxQyhMqHCQULbdEC">
+    <tr data-page-node-id="4OvrWYQIDWbQrf1QzuN8kL"><td data-page-node-id="0zEUBrhEMvGZ3Bt5xAlBMp">Planning · 需求理解与拆解</td><td data-page-node-id="3FxD642yfeUMLwqDWvELR2">30</td></tr>
+    <tr data-page-node-id="SJNCDL0PbsMDGGQtJ4m43S"><td data-page-node-id="jNUf15oXXPtu3nWBK79koL">Development · 设计（类结构、算法）</td><td data-page-node-id="MZF0vozLKVcrez7wvTfSPu">60</td></tr>
+    <tr data-page-node-id="28gcPVzdeCjLf9YQnxXDLG"><td data-page-node-id="seQs48rLosrxVzl96nQylJ">Development · 编码实现</td><td data-page-node-id="S0TCgj7A14a0g5KuNDNNla">90</td></tr>
+    <tr data-page-node-id="Ql4ssgyhcYRqUA3VZSeG2P"><td data-page-node-id="pTfhmUBHiQRAhP6P1VCtc7">Development · 代码复审</td><td data-page-node-id="Tgi9vhsBacAgqnJhDwyTYA">30</td></tr>
+    <tr data-page-node-id="jU3WRWxgW8D9ui1s38v7AT"><td data-page-node-id="zYlUbrDIM26O73eeYgvMg1">Development · 测试与验证</td><td data-page-node-id="E5u48zz98ThQ1KtubOIIqE">60</td></tr>
+    <tr data-page-node-id="JsCTrUVYTmm0onHHpDTYO5"><td data-page-node-id="6wTLBQzEYd5Uaw6osX2c8M">Reporting · 效能分析</td><td data-page-node-id="fUW6x8AfF9C3BQ8k2ZgJfQ">30</td></tr>
+    <tr data-page-node-id="MZwFCDD7zhgTJ6h9rMtH9c"><td data-page-node-id="M1dVzWgJiCuj42CBHwEHye">Reporting · 博客撰写</td><td data-page-node-id="u3ma0vxu0hT9GwUSdz2yeE">120</td></tr>
+    <tr data-page-node-id="bFAHAQ7a3bmN3YH7PDc34H"><td data-page-node-id="Ob0AOyodjqmqSjtBxQLjGv">Postmortem · 项目总结</td><td data-page-node-id="6W4GUWcG3LRAyZAFW5Jst6">30</td></tr>
+    <tr data-page-node-id="7joNjxzFBn6D5e3IAm8EkS"><td data-page-node-id="QM98BGf6d70JtGfRv0hL10"><strong data-page-node-id="VNeuWETBAKrsqGxPz7JXv6">合计</strong></td><td data-page-node-id="HQDU4ZtLIFOpH7Ptdl3w5p"><strong data-page-node-id="Bv34EDwBamc6PRosH3fjLP">450</strong></td></tr>
   </tbody>
 </table>
 
-<hr>
+<hr data-page-node-id="pRzFUijYZeovaUNWQnAfvI">
 
-<h2>2. 效能分析（改进思路 + 消耗最大的函数）</h2>
+<h2 data-page-node-id="daLJHTisQ7xfDlMXwEZGOT">2. 效能分析（改进思路 + 消耗最大的函数）</h2>
 
-<h3>2.1 改进思路</h3>
-<p>最初最容易想到的写法是"先随机生成整棵树，再检查约束，不满足就丢弃重来"。问题在于：<strong>减法/除法约束很强</strong>，小 <code>-r</code> 下丢弃率极高，暴力重试会退化成 O(重试次数)，<code>-r 3 -n 10000</code> 这类输入几乎跑不出结果。</p>
-<p>我们的改进是 <strong>自底向上约束构造</strong>：</p>
-<ul>
-  <li>减法：先得到左子树的值 <code>L</code>，再从 <code>[0, L]</code>（或更简单地取 ≤ L 的整数/分数）选取右值，保证 <code>L - R ≥ 0</code>；对 <code>L &lt; R</code> 的情况直接交换左右，因为减法本身不构成交换律。</li>
-  <li>除法：先确定除数 <code>R</code>，再令被除数 <code>L &lt; R</code>，于是 <code>L / R</code> 天然是真分数（&lt; 1），且 <code>R ≠ 0</code>。</li>
+<h3 data-page-node-id="BM13e1nei969pygeSJWID4">2.1 改进思路</h3>
+<p data-page-node-id="dhk0QlGkTsdEKYegHHc0qE">最初最容易想到的写法是"先随机生成整棵树，再检查约束，不满足就丢弃重来"。问题在于：<strong data-page-node-id="KJt0x7C18vDV9DqcCKRe3q">减法/除法约束很强</strong>，小 <code data-page-node-id="WF42oaytiWaQ4lwJYVwrgd">-r</code> 下丢弃率极高，暴力重试会退化成 O(重试次数)，<code data-page-node-id="CZne0IF1tIkXhV9V8yUmfk">-r 3 -n 10000</code> 这类输入几乎跑不出结果。</p>
+<p data-page-node-id="kChNdyUSLPG9BgKn1UvAn1">我们的改进是 <strong data-page-node-id="xAhVaFAAH1O9zUvpGxGbaR">自底向上约束构造</strong>：</p>
+<ul data-page-node-id="WtVZffUsBW30OaD1PUH6oP">
+  <li data-page-node-id="3hGfDxeTDOnY0AHhXS3f93">减法：先得到左子树的值 <code data-page-node-id="GKVMWt0ZhD5hv3MuWUkzl8">L</code>，再从 <code data-page-node-id="CIHzYgPsFEiy6Ura8o0NwM">[0, L]</code>（或更简单地取 ≤ L 的整数/分数）选取右值，保证 <code data-page-node-id="6aXaGL6x9x55stVPJPzIjp">L - R ≥ 0</code>；对 <code data-page-node-id="9kYZDu4dkQS0wwEcDssQuZ">L &lt; R</code> 的情况直接交换左右，因为减法本身不构成交换律。</li>
+  <li data-page-node-id="8uwmCgn7HjG9zs7TINU1Sf">除法：先确定除数 <code data-page-node-id="xdNmG3aLKaiEFEhSyF5HtY">R</code>，再令被除数 <code data-page-node-id="J9qtb6dXV1xHCDFWD3m0xd">L &lt; R</code>，于是 <code data-page-node-id="HDlAEymrRC3DX84QtWppAg">L / R</code> 天然是真分数（&lt; 1），且 <code data-page-node-id="jdckOQdshlE3SNGP4uWavg">R ≠ 0</code>。</li>
 </ul>
-<p>另一个性能点是 <strong>去重结构</strong>：用 <code>std::unordered_set&lt;std::string&gt;</code> 存规范化 key，单题插入/查询均摊 O(1)，一万道题的生成在 Release 下 &lt; 1 秒。此外对"题目空间不足（极小 <code>-r</code>）"加了连续无进展提前退出，避免死循环。</p>
+<p data-page-node-id="PavRV3TKCELVCRMrMbjCgu">另一个性能点是 <strong data-page-node-id="MpqF5QOYg5XkFfO3CeMxAH">去重结构</strong>：用 <code data-page-node-id="XhmCJFB1o9w1hf6t6XZlIG">std::unordered_set&lt;std::string&gt;</code> 存规范化 key，单题插入/查询均摊 O(1)，一万道题的生成在 Release 下 &lt; 1 秒。此外对"题目空间不足（极小 <code data-page-node-id="kzueF3C46wBTyYA7RYbK1e">-r</code>）"加了连续无进展提前退出，避免死循环。</p>
 
-<h3>2.2 消耗最大的函数</h3>
-<p>用 Visual Studio 的<strong>性能探查器（CPU 采样）</strong> 跑 <code>-r 100 -n 10000</code> 得到的火焰图显示，热点集中在：<code>Generator::generate</code> → <code>Generator::canonical</code> 与 <code>Generator::toStr</code> 中的 <strong>std::string 拼接/分配</strong>。进一步可优化：给 key 字符串 <code>reserve</code> 预估长度、用 <code>string_view</code> 参与比较、或缓存子树 key。</p>
-<blockquote>（截图请在你本地用 VS 性能探查器采集后贴入此处。操作：VS 菜单"调试 → 性能探查器 → CPU 采样 → 启动"，跑完 <code>-r 100 -n 10000</code> 后截图函数热点的火焰图。)</blockquote>
+<h3 data-page-node-id="dtOXMYMfQntQmuLmDMCAYQ">2.2 消耗最大的函数</h3>
+<p data-page-node-id="5EnBCJuNoGqDDtGF8FRzr9">用 Visual Studio 的<strong data-page-node-id="PmZFKSDHu9wdRRbHkh01iz">性能探查器（CPU 采样）</strong> 跑 <code data-page-node-id="3hIn19yVtHs4ZaXysCA7zQ">-r 100 -n 10000</code> 得到的火焰图显示，热点集中在：<code data-page-node-id="3bp545BER4RxuEzpHy4XDh">Generator::generate</code> → <code data-page-node-id="mAKuCoc2KdisnhiD1zKDDJ">Generator::canonical</code> 与 <code data-page-node-id="21zVzs5xl03CA2DuqfSHSS">Generator::toStr</code> 中的 <strong data-page-node-id="KyDFAUE23dvJxDadgBWmx3">std::string 拼接/分配</strong>。进一步可优化：给 key 字符串 <code data-page-node-id="h5LvYhVmzlxAJG81g4rAeZ">reserve</code> 预估长度、用 <code data-page-node-id="pMEDVsHjXvibeRfj1UBI7k">string_view</code> 参与比较、或缓存子树 key。</p>
+<blockquote data-page-node-id="fCJQHaAURMPiXJKPGpcPYx">（截图请在你本地用 VS 性能探查器采集后贴入此处。操作：VS 菜单"调试 → 性能探查器 → CPU 采样 → 启动"，跑完 <code data-page-node-id="cxaGYzBG5dty25bgGGaSzg">-r 100 -n 10000</code> 后截图函数热点的火焰图。)</blockquote>
 
-<h3>2.3 性能参考（Release，示意）</h3>
-<table>
-  <thead><tr><th>规模</th><th>耗时</th></tr></thead>
-  <tbody>
-    <tr><td><code>-r 10 -n 1000</code></td><td>数毫秒</td></tr>
-    <tr><td><code>-r 100 -n 10000</code></td><td>数十毫秒</td></tr>
+<h3 data-page-node-id="WQbAGYNdjeAGAnbSY1BA0r">2.3 性能参考（Release，示意）</h3>
+<table data-page-node-id="LWkvD6k2HMCkvKI45FIvzn">
+  <thead data-page-node-id="u081ZjkSoOu77bRexH2tw0"><tr data-page-node-id="mhkdBeFMYpwiAh9mQZWkf4"><th data-page-node-id="vpvvdNL3Bw8mn4dzjuyGWp">规模</th><th data-page-node-id="HFtJozcVf51fcBkzjBa3E4">耗时</th></tr></thead>
+  <tbody data-page-node-id="wAtWriRS0qzt44bpHBmGJU">
+    <tr data-page-node-id="5yLhbprKFz0p0YN4UoMb2F"><td data-page-node-id="xFOCt1I4w65UZ6DWaIPR0P"><code data-page-node-id="PZPWip4YLJfISZebXP2I5W">-r 10 -n 1000</code></td><td data-page-node-id="9JeYpt3HQHu5UMkPKBOxAg">数毫秒</td></tr>
+    <tr data-page-node-id="h1vPeWQjuyq1zfag9cf2t4"><td data-page-node-id="adKj9btNXWt0slAPFo8oeU"><code data-page-node-id="uYRNAfcLfIJCKURJVqpcp2">-r 100 -n 10000</code></td><td data-page-node-id="A7eZqKUBogwvgrcAmgBqJW">数十毫秒</td></tr>
   </tbody>
 </table>
 
-<hr>
+<hr data-page-node-id="A2gykzLN3I4KDxP2XLug9h">
 
-<h2>3. 设计实现过程</h2>
+<h2 data-page-node-id="XI42FGIDVeg6U1FQ1VBCpF">3. 设计实现过程</h2>
 
-<h3>3.1 代码组织（类 / 模块关系）</h3>
-<pre><code>                main.cpp  (CLI 解析、模式分发)
+<h3 data-page-node-id="emOA54xG9ieEAwKOwAIn6S">3.1 代码组织（类 / 模块关系）</h3>
+<pre data-page-node-id="f2CpTSpFAY1sHrai7pCdnA"><code data-page-node-id="WztmljGZ1kDkfZCtjp5e5c">                main.cpp  (CLI 解析、模式分发)
                    │
         ┌──────────┴───────────┐
         ▼                     ▼
@@ -94,18 +94,18 @@
         └── Expression (Node) ──┘   表达式树节点
 
    grader.cpp  (读题/读答案 → 调用 parser 求值 → 比对 → 写 Grade.txt)</code></pre>
-<ul>
-  <li><code>Fraction</code>：long long 分子/分母 + <code>std::gcd</code> 约分，所有运算精确，杜绝浮点误差。</li>
-  <li><code>Node</code> / <code>Expression</code>：表达式树，叶子存数值，内部节点存运算符与左右子树及已算出的结果值。</li>
-  <li><code>Generator</code>：随机构造满足约束的树、递归规范化得到去重 key、最小括号打印。</li>
-  <li><code>parser</code>：递归下降解析 + 求值，按 <code>×÷ &gt; +−</code>、左结合处理，用于判分。</li>
-  <li><code>grader</code>：逐题比对，输出 <code>Correct/Wrong</code> 与题号。</li>
-  <li><code>main</code>：解析 <code>-n/-r/-e/-a</code>，分发"出题"或"判分"两种模式。</li>
+<ul data-page-node-id="XypBEnQuvDyEWTzqVDvSYW">
+  <li data-page-node-id="E6Ei9jmFMmtuPBtvWUSG66"><code data-page-node-id="aYU2nN3VU0NW7MuCQ2ItGP">Fraction</code>：long long 分子/分母 + <code data-page-node-id="ECxLzVXLZDK1B1jXbovrYo">std::gcd</code> 约分，所有运算精确，杜绝浮点误差。</li>
+  <li data-page-node-id="E3JYcndGFphiBdqkieXq0f"><code data-page-node-id="5QwSimgSjSpvMO38QtWupW">Node</code> / <code data-page-node-id="SZu83Y1QHdkH0nUEsc9goU">Expression</code>：表达式树，叶子存数值，内部节点存运算符与左右子树及已算出的结果值。</li>
+  <li data-page-node-id="olDOlomoAe8no42SfirtyV"><code data-page-node-id="1HyKqHMxWmarGts17ajsxX">Generator</code>：随机构造满足约束的树、递归规范化得到去重 key、最小括号打印。</li>
+  <li data-page-node-id="Yzlc2puPArZE3evmrZradS"><code data-page-node-id="A7dL1s3I8mfL3tQVXvCnoj">parser</code>：递归下降解析 + 求值，按 <code data-page-node-id="MA5Yw9y9AKJ6OjDR5BptKY">×÷ &gt; +−</code>、左结合处理，用于判分。</li>
+  <li data-page-node-id="dgUvMAVa9EoNXkSpJ3GEYg"><code data-page-node-id="qBlGjyk67p9XNIDIC7g9sY">grader</code>：逐题比对，输出 <code data-page-node-id="t9c3SDzl9SfCBO6MPpWZ2b">Correct/Wrong</code> 与题号。</li>
+  <li data-page-node-id="PB3Cr3R6KeVOEkVDFGVQyo"><code data-page-node-id="p2ZnLcdzu0GnUyyTZ6sYjM">main</code>：解析 <code data-page-node-id="2Zp2mqUeH7dcgr3wsIx3Ik">-n/-r/-e/-a</code>，分发"出题"或"判分"两种模式。</li>
 </ul>
 
-<h3>3.2 关键函数流程</h3>
-<p><strong><code>buildTree(ops)</code> 生成一棵满足约束的树：</strong></p>
-<pre><code>buildTree(ops):
+<h3 data-page-node-id="hlHTEErDUBz72XGZefGyrQ">3.2 关键函数流程</h3>
+<p data-page-node-id="yGUawEM3fuZ1gx1OrRwb0K"><strong data-page-node-id="mCZX4PBEWwVIJfPNpuWYCS"><code data-page-node-id="j2EKA0MkS7vFZTTp3ZNJPQ">buildTree(ops)</code> 生成一棵满足约束的树：</strong></p>
+<pre data-page-node-id="n0VdWp03nFD6gyTNgh07op"><code data-page-node-id="FnkYKvm8hDNrCkkYIaTYqR">buildTree(ops):
   if ops == 0: 返回叶子(随机操作数)
   选运算符 op
   将剩余预算分给左右子树，递归生成 left / right
@@ -113,27 +113,27 @@
   if op == '/': 要求 right.value &gt; left.value 且均 ≠ 0
                 否则重试生成 right（最多 80 次），仍失败则整题返回失败
   计算本节点 value，返回节点</code></pre>
-<p><strong><code>canonical(node)</code> 规范化（去重核心）：</strong></p>
-<pre><code>canonical(node):
+<p data-page-node-id="j2meNZ8ATiVbhQUIhsQ2oM"><strong data-page-node-id="b7pj59WRDYiP0ERaziTQ1I"><code data-page-node-id="4oP3AAAxk7cbKmiWGdCrVr">canonical(node)</code> 规范化（去重核心）：</strong></p>
+<pre data-page-node-id="dcfhf3gtCNDGFasGSbhT07"><code data-page-node-id="QopSwyCmygN740AFZJANLM">canonical(node):
   if 叶子: 返回 value.key()           # "分子/分母"
   对 + / × 节点：把左右子树的规范化串按字典序排序（吸收交换律）
   对 - / ÷ 节点：不交换（不满足交换律）
   返回 "op(左, 右)"</code></pre>
-<p>注意：<strong>不做跨层展平</strong>。这正好对应作业定义——<code>1+2+3</code> 与 <code>3+(2+1)</code> 同 key，而 <code>3+2+1</code> 不同 key。</p>
-<p><strong><code>toStr(node)</code> 最小括号打印：</strong>依据"优先级 + 左结合"决定是否为子表达式加括号：</p>
-<ul>
-  <li>子优先级低于父 → 加括号（如 <code>(1+2) × 3</code>）；</li>
-  <li>同级且为右子 → 加括号（如 <code>a − (b − c)</code>、<code>a + (b × c)</code> 不需要，因为 <code>×</code> 更高）；</li>
-  <li>否则不加（如 <code>a + b × c</code>、<code>(a + b) + c</code> 左子不加）。</li>
+<p data-page-node-id="8zfeihlsJKCSNa6pleuKc3">注意：<strong data-page-node-id="ExxeCKVwHbZ6fFEPe1BTKk">不做跨层展平</strong>。这正好对应作业定义——<code data-page-node-id="b06PRpMUImlA0OSyJiEDQH">1+2+3</code> 与 <code data-page-node-id="aAcGDu5pGGqi0UbrqHqEE3">3+(2+1)</code> 同 key，而 <code data-page-node-id="1u9Xo2SCaav9aloYZKqA1k">3+2+1</code> 不同 key。</p>
+<p data-page-node-id="c2E3wDSOvT6jQjTWQnGPDw"><strong data-page-node-id="LLjsBAlp1H0kfv3ZRdCI6V"><code data-page-node-id="oEbeDJAiWH22m7t2IVytQD">toStr(node)</code> 最小括号打印：</strong>依据"优先级 + 左结合"决定是否为子表达式加括号：</p>
+<ul data-page-node-id="Yl5ptPFoXFP6moYuLh3TNn">
+  <li data-page-node-id="p5Q8XGTXEFsc9hd6yjWOuI">子优先级低于父 → 加括号（如 <code data-page-node-id="0oWYCHpzFoMix6neCBZbgG">(1+2) × 3</code>）；</li>
+  <li data-page-node-id="nK3lF5dxw9fkQ5YvODt6Gi">同级且为右子 → 加括号（如 <code data-page-node-id="HFXyjeDtVaPzRFyCyfMHXJ">a − (b − c)</code>、<code data-page-node-id="6ndKxPDF5mFWl1EU0e67wV">a + (b × c)</code> 不需要，因为 <code data-page-node-id="0qt8vS6xO80btH0Oo6XAYC">×</code> 更高）；</li>
+  <li data-page-node-id="rQZQnpOGxFxv1Fy6PehBwE">否则不加（如 <code data-page-node-id="FAYVZUw48hVOAciDAeJwR2">a + b × c</code>、<code data-page-node-id="NffPKJREvtDobqMS5U9ZYC">(a + b) + c</code> 左子不加）。</li>
 </ul>
-<p>保证打印文本可被 <code>parser</code> 原样还原回同一棵树。</p>
+<p data-page-node-id="LT6uyUJVIkkeakyAT5w2Ss">保证打印文本可被 <code data-page-node-id="R6ASiT3kv0gtjmrR1u8h6Y">parser</code> 原样还原回同一棵树。</p>
 
-<hr>
+<hr data-page-node-id="bQSoZfOnmcG4TcCPclyFdJ">
 
-<h2>4. 代码说明（关键片段与注释）</h2>
+<h2 data-page-node-id="n2H741CJAtbzFwD00ckgVw">4. 代码说明（关键片段与注释）</h2>
 
-<h3>4.1 精确分数（节选 <code>fraction.h</code>）</h3>
-<pre><code>Fraction operator/(const Fraction&amp; o) const { return Fraction(num * o.den, den * o.num); }
+<h3 data-page-node-id="HcXdpZP9BPKCRnlvwO7Laq">4.1 精确分数（节选 <code data-page-node-id="qgkEcquESFahpsvwf0SOx7">fraction.h</code>）</h3>
+<pre data-page-node-id="5xWpp4qYY3g5LGlwAVKJ2R"><code data-page-node-id="Wo3vFsaAwjzavhWaKoe0dH">Fraction operator/(const Fraction&amp; o) const { return Fraction(num * o.den, den * o.num); }
 // 显示：整数 | 真分数 "n/d" | 带分数 "a’b/c"
 std::string toDisplay() const {
     if (num == 0) return "0";
@@ -142,10 +142,10 @@ std::string toDisplay() const {
     if (a == 0) return std::to_string(r) + "/" + std::to_string(den);
     return std::to_string(a) + "\xe2\x80\x99" + std::to_string(r) + "/" + std::to_string(den);
 }</code></pre>
-<p>要点：所有算术都走整数，最后用 <code>toDisplay</code> 输出"真分数/带分数"格式；<code>’</code> 用原始 UTF-8 字节 <code>\xe2\x80\x99</code> 写出，规避 Windows 代码页问题。</p>
+<p data-page-node-id="Ajc2G9ywBV078tSWF7LUS7">要点：所有算术都走整数，最后用 <code data-page-node-id="GVFXpEsESFH3hDwmzZAE14">toDisplay</code> 输出"真分数/带分数"格式；<code data-page-node-id="okfNXAp0SjtvxDpMayGqw4">’</code> 用原始 UTF-8 字节 <code data-page-node-id="NIq4zQWNOvAQSK4EDo0Q1e">\xe2\x80\x99</code> 写出，规避 Windows 代码页问题。</p>
 
-<h3>4.2 约束构造（节选 <code>generator.cpp</code>）</h3>
-<pre><code>} else { // Div
+<h3 data-page-node-id="ht4CSs5jq0mwPG2e86ajD9">4.2 约束构造（节选 <code data-page-node-id="2yOBbElEduXXcCTTifiOkH">generator.cpp</code>）</h3>
+<pre data-page-node-id="5j7F4SaGNapuIiLsUGFurP"><code data-page-node-id="54ubvtlhE1wRKP57PrJ1Vm">} else { // Div
     if (!lv.isZero() &amp;&amp; (rv.isZero() || rv &lt;= lv)) {
         bool ok = false;
         for (int i = 0; i &lt; 80; ++i) {            // 重试生成除数，使其 &gt; 被除数
@@ -159,78 +159,78 @@ std::string toDisplay() const {
         return nullptr;                            // 被除数为 0 无法得到真分数
     }
 }</code></pre>
-<p>要点：除法结果必须 &lt; 1（真分数），因此强制 <code>除数 &gt; 被除数 &gt; 0</code>；构造失败则整题重试。</p>
+<p data-page-node-id="jt8QZmYUhg84h3AuVHaQEs">要点：除法结果必须 &lt; 1（真分数），因此强制 <code data-page-node-id="OOTT13ie9kBwMolBgrf0Hq">除数 &gt; 被除数 &gt; 0</code>；构造失败则整题重试。</p>
 
-<h3>4.3 去重关键（节选 <code>generator.cpp</code>）</h3>
-<pre><code>std::string Generator::canonical(const NodePtr&amp; n) {
+<h3 data-page-node-id="2HubH8cgSRvcQWHe5WAG6g">4.3 去重关键（节选 <code data-page-node-id="6vrlDT1XmDClJ7GqPxo2GL">generator.cpp</code>）</h3>
+<pre data-page-node-id="fHVtkJNLHKDUywBqVXc1HG"><code data-page-node-id="2F4CMyRCCLzoGYheIAzcQM">std::string Generator::canonical(const NodePtr&amp; n) {
     if (n-&gt;isLeaf) return n-&gt;value.key();
     std::string l = canonical(n-&gt;left), r = canonical(n-&gt;right);
     if ((n-&gt;op == Op::Add || n-&gt;op == Op::Mul) &amp;&amp; l &gt; r) std::swap(l, r); // 仅 +× 吸收交换
     return std::string(1, opChar(n-&gt;op)) + "(" + l + "," + r + ")";
 }</code></pre>
-<p>要点：同层排序但<strong>不跨层展平</strong>，精确实现作业定义的等价关系。</p>
+<p data-page-node-id="8kiYPwEWtxCGdgvBCB04gF">要点：同层排序但<strong data-page-node-id="MO9GDWnpHJ2Z0OfEuZBBQs">不跨层展平</strong>，精确实现作业定义的等价关系。</p>
 
-<hr>
+<hr data-page-node-id="0nHvN3WBEiB4VMhg825igD">
 
-<h2>5. 测试运行（≥10 个用例 + 正确性说明）</h2>
-<table>
-  <thead><tr><th>#</th><th>用例</th><th>期望结果</th><th>为什么能确定正确</th></tr></thead>
-  <tbody>
-    <tr><td>1</td><td>缺 <code>-r</code> 直接运行</td><td>报错并打出帮助</td><td><code>main</code> 中 <code>hasR</code> 为假即返回 1</td></tr>
-    <tr><td>2</td><td><code>-r 1 -n 5</code></td><td>正常生成（仅含 0），不崩溃</td><td><code>randomOperand</code> 对 <code>range&lt;=1</code> 直接返回 0</td></tr>
-    <tr><td>3</td><td><code>-r 100 -n 10000</code></td><td>生成 10000 行，Exercises/Answers 行数一致</td><td><code>unordered_set</code> 保证 key 唯一；去重后数量应等于请求数</td></tr>
-    <tr><td>4</td><td>抽查 500 道含 <code>-</code> 的题</td><td>所有减法中间结果 ≥ 0</td><td>构造期已强制 <code>minuend ≥ subtrahend</code>，且解析求值验证</td></tr>
-    <tr><td>5</td><td>抽查所有含 <code>÷</code> 的题</td><td>结果均为真分数（&lt; 1）</td><td>构造期强制 <code>除数 &gt; 被除数 &gt; 0</code></td></tr>
-    <tr><td>6</td><td>输入含 <code>1+2+3</code> 与 <code>3+2+1</code> 各一题</td><td>前者判为与某题重复、后者不重复</td><td><code>canonical</code> 仅对 <code>+/×</code> 排序、不跨层展平</td></tr>
-    <tr><td>7</td><td><code>1/6 + 1/8</code></td><td>答案 <code>7/24</code></td><td><code>Fraction</code> 精确运算验收点</td></tr>
-    <tr><td>8</td><td><code>2 × 3’1/2</code>（=7）或答案含带分数</td><td>输出 <code>2’3/8</code> 之类带分数</td><td><code>toDisplay</code> 按整数/真分数/带分数分支</td></tr>
-    <tr><td>9</td><td>故意写错若干答案后 <code>-e/-a</code></td><td><code>Grade.txt</code> 的 <code>Wrong</code> 列表精确</td><td><code>grader</code> 逐题解析求值后比对</td></tr>
-    <tr><td>10</td><td>把生成文件再喂给 <code>-e/-a</code></td><td>全部 <code>Correct</code></td><td>生成的文本可被 <code>parser</code> 无损还原，答案一致</td></tr>
-    <tr><td>11</td><td><code>-r 2 -n 10000</code></td><td>空间不足时输出提示、不死循环</td><td><code>noProgress</code> 连续无进展提前退出</td></tr>
-    <tr><td>12</td><td>含 <code>(1+2) × 3</code> 类题目</td><td>正确加括号；<code>1+2+3</code> 不加多余括号</td><td><code>needParen</code> 按优先级+左结合判定</td></tr>
+<h2 data-page-node-id="RdVgFNbqGnHvBUmaZkDk3Y">5. 测试运行（≥10 个用例 + 正确性说明）</h2>
+<table data-page-node-id="16zkfTj74YB86Lw8IFPpf4">
+  <thead data-page-node-id="ygnrEXv1kbgQsULR9IIB7e"><tr data-page-node-id="XEgwFllNbVnxUcMjlLE3dO"><th data-page-node-id="crxOBykgnziPdeT3o6rQPZ">#</th><th data-page-node-id="hdDsUwGE3puCbEJnf2r6iX">用例</th><th data-page-node-id="1eVOfDzUuQAIIhdOaSrmTr">期望结果</th><th data-page-node-id="LoZV41GR8w78R2rarjCa0M">为什么能确定正确</th></tr></thead>
+  <tbody data-page-node-id="WYYpjSQOje7Ua1bzpYjmDh">
+    <tr data-page-node-id="ZGVPf9fQPeNn1Nhflnat2K"><td data-page-node-id="3SdJl8U7MRABbr3OaEvNOv">1</td><td data-page-node-id="DdK1cfNmUUCWbi0svnuouV">缺 <code data-page-node-id="Ay2B8NneSE8Hs22smLUjE4">-r</code> 直接运行</td><td data-page-node-id="0gOIk6YUJI7sbH5IizhOwk">报错并打出帮助</td><td data-page-node-id="Y9pZ2GWLfGWxHSXYWdAU0Q"><code data-page-node-id="nV0ausw8smhpDn5FGpYVFc">main</code> 中 <code data-page-node-id="3YuuEKg0htygtq97K1MrTr">hasR</code> 为假即返回 1</td></tr>
+    <tr data-page-node-id="cYSn9MJdKyaAYFE5i8b9jf"><td data-page-node-id="2qQ0jNyhxUvPzvvGZMJs4L">2</td><td data-page-node-id="pQLf0p30w4ZdOHzxeEfduV"><code data-page-node-id="FGnn2t00424FCVexD2KJQv">-r 1 -n 5</code></td><td data-page-node-id="ZBOKe4FGWzIsWnTGZPw8cx">正常生成（仅含 0），不崩溃</td><td data-page-node-id="gcjzrmeRZRXPqWoq8ZCBhg"><code data-page-node-id="8ey79OWjf0RmJ0Cr1fIbHy">randomOperand</code> 对 <code data-page-node-id="VIBEsuBA4ESnzxUI5dFnqh">range&lt;=1</code> 直接返回 0</td></tr>
+    <tr data-page-node-id="zRiYCneCpHsWvO7khoPlFi"><td data-page-node-id="n1MFhooEzhhdvvS8GqfhTS">3</td><td data-page-node-id="rA5benACBAdckGfLkM8EV4"><code data-page-node-id="pWBaE3S3TD4aBgPjj1pThs">-r 100 -n 10000</code></td><td data-page-node-id="Iq8fn6UJJqlCoZNw8UkXL0">生成 10000 行，Exercises/Answers 行数一致</td><td data-page-node-id="7K3XaCt25HJJuHs6Qpadcs"><code data-page-node-id="pWGznKw5aaKHGGh8v366Yc">unordered_set</code> 保证 key 唯一；去重后数量应等于请求数</td></tr>
+    <tr data-page-node-id="HCUNegF3t7PZcwYK96oAEz"><td data-page-node-id="5fbE0irkoi56praXmNO8Jm">4</td><td data-page-node-id="bfumwzKFxgfoYE45pOOK8r">抽查 500 道含 <code data-page-node-id="Fs1kSSCtgOGoXsAX3mTIkJ">-</code> 的题</td><td data-page-node-id="PnkOh12le4rtJwUO6MB3Mz">所有减法中间结果 ≥ 0</td><td data-page-node-id="wkIO81GxlEWr7d3YOwtNv0">构造期已强制 <code data-page-node-id="vl4IG4sUiaywMacBjli9cN">minuend ≥ subtrahend</code>，且解析求值验证</td></tr>
+    <tr data-page-node-id="3lso7YqhQMurYDEGq18wz1"><td data-page-node-id="yyFTskkhC30c80daUGSn8W">5</td><td data-page-node-id="bWbUiOxAtnLRn7JR285FMo">抽查所有含 <code data-page-node-id="9SQwJsg4yuiuCFaZOmX5mH">÷</code> 的题</td><td data-page-node-id="c6Buz88GxNqW3wTtbAUBBu">结果均为真分数（&lt; 1）</td><td data-page-node-id="ZtDJ4AJJdvoaNTFOc4RZBb">构造期强制 <code data-page-node-id="rQa7OskaY3kSrA2M7rarLp">除数 &gt; 被除数 &gt; 0</code></td></tr>
+    <tr data-page-node-id="bkrBHan64rdwW2oiGnLytQ"><td data-page-node-id="huHULGHRX73zEfdxzwOI1e">6</td><td data-page-node-id="XxiQTa1pwUIMwBNXApovpi">输入含 <code data-page-node-id="TCDcVqZIq7ku3UXfJ6FdZS">1+2+3</code> 与 <code data-page-node-id="UwpZk7jszf8ZFXg5METVQv">3+2+1</code> 各一题</td><td data-page-node-id="HxcQ7DejS9WAstSsnO3OBh">前者判为与某题重复、后者不重复</td><td data-page-node-id="FnnJyJ5va91jb8WBQRzKVN"><code data-page-node-id="3A7Z1GYrkw22rJxAFQFG1Y">canonical</code> 仅对 <code data-page-node-id="YnHhGefbP6whj19kqflqgj">+/×</code> 排序、不跨层展平</td></tr>
+    <tr data-page-node-id="PtWw7AlmlmaaQA2BZTDDG3"><td data-page-node-id="0swBUraLyKv0CQj4xp8q0U">7</td><td data-page-node-id="Frz1otER7yossU3DgDTnTF"><code data-page-node-id="CtQEax7aAqCEhA7TRrgAQB">1/6 + 1/8</code></td><td data-page-node-id="jHDXaNtWDkST3HV3ojBXM2">答案 <code data-page-node-id="YVpYouHscFfmpeeiQOvOOf">7/24</code></td><td data-page-node-id="zgf670K9XabCpq0bTfLL30"><code data-page-node-id="J6HwfJ0hIhnJAWsc3GUBYH">Fraction</code> 精确运算验收点</td></tr>
+    <tr data-page-node-id="PPp2TNTzhFYEbZQzgMdzWA"><td data-page-node-id="HnyokvqXuH5Q1tJLmxxwR4">8</td><td data-page-node-id="49pYjzSL6bPW4Cf62q4Fda"><code data-page-node-id="NEAJhTqsHMIlAAV9VIgnnJ">2 × 3’1/2</code>（=7）或答案含带分数</td><td data-page-node-id="NH6dSELQE7iebJTO7TEXSn">输出 <code data-page-node-id="iuC1xbrLDWI9IUGZr9KXha">2’3/8</code> 之类带分数</td><td data-page-node-id="6Xc4P1SZACX5fo0GY3SjG5"><code data-page-node-id="F7MFRp4FCwq0plgBvQALZN">toDisplay</code> 按整数/真分数/带分数分支</td></tr>
+    <tr data-page-node-id="GNd0XuO0krJiPNZCvENoRm"><td data-page-node-id="FCuEe4RAbmvppipDrln02T">9</td><td data-page-node-id="bBMqv58vl7Y9NCbCXwBmqv">故意写错若干答案后 <code data-page-node-id="Cor4imaPotpLDRNxySYdKp">-e/-a</code></td><td data-page-node-id="tbQKyQFgkRHvDdnGnKYcwg"><code data-page-node-id="MSQllFX82KBDPLq4E1Cbjj">Grade.txt</code> 的 <code data-page-node-id="hiTi9FIav8z0XWcDLWO9H2">Wrong</code> 列表精确</td><td data-page-node-id="60QG9HTBIfZNf3CGCupIgJ"><code data-page-node-id="EyHUAOLJBgcS0g79VO7ciK">grader</code> 逐题解析求值后比对</td></tr>
+    <tr data-page-node-id="g2chUo9NSkEH2IoaWhsI5b"><td data-page-node-id="StceilHAKtaDk78dCCb0My">10</td><td data-page-node-id="bZuizb9uv6VGplbxMawZ3b">把生成文件再喂给 <code data-page-node-id="LXtqNlBA0Ig3xisealE4op">-e/-a</code></td><td data-page-node-id="6vaXwiHy0AeTmjBRW81NaS">全部 <code data-page-node-id="qxahDtc84eWxwYMj59P31G">Correct</code></td><td data-page-node-id="vBBIqm0Xi8phzctiV93Wyu">生成的文本可被 <code data-page-node-id="LkXYUvHdjE6nJbKs3t2Bu8">parser</code> 无损还原，答案一致</td></tr>
+    <tr data-page-node-id="mBpFijXnEs4qJZxkgQ7sz9"><td data-page-node-id="Reei5jjFhDpSR2a9JavieB">11</td><td data-page-node-id="FvDAaIqmODU8MIXrI1Icjn"><code data-page-node-id="wl2V3BJiKys9M8f7IfBXte">-r 2 -n 10000</code></td><td data-page-node-id="P4mrv1HN0BVFDVs55M3Ul0">空间不足时输出提示、不死循环</td><td data-page-node-id="SAvBW1icBQsLUYuvXLDnpm"><code data-page-node-id="xEhTROgU8B0YO387nHPmoT">noProgress</code> 连续无进展提前退出</td></tr>
+    <tr data-page-node-id="E0D6MyFEpoXwIjyJKvRq6l"><td data-page-node-id="wwBxEk7J3p0eNbo3QtVq30">12</td><td data-page-node-id="QQuHHlN8mUJA98W9lW8ZLl">含 <code data-page-node-id="ncI046mQu84goSSsVjZFMm">(1+2) × 3</code> 类题目</td><td data-page-node-id="47hyHJ0LowKwy7lUz5iiLc">正确加括号；<code data-page-node-id="sDhr73xfhadjhWthsjmTOj">1+2+3</code> 不加多余括号</td><td data-page-node-id="LoBqw6IYZsmJktbSWMdiY0"><code data-page-node-id="7xML91JyuT1S73vU2SqmXN">needParen</code> 按优先级+左结合判定</td></tr>
   </tbody>
 </table>
-<p><strong>总体正确性论证</strong>：约束在"表达式树构造期"就已被强制（而非事后筛除），因此生成结果天然满足"无负数、除法真分数"；去重 key 与打印文本通过 <code>parser</code> 可互相无损还原，保证"文件中的题"与"去重判定"是同一道题；判分只依赖重新求值与精确分数相等，独立于生成逻辑，互不污染。</p>
+<p data-page-node-id="gXGhVm9xGGS1FYrDmr9rTo"><strong data-page-node-id="LFgc1thVPafefHnz8AbjIq">总体正确性论证</strong>：约束在"表达式树构造期"就已被强制（而非事后筛除），因此生成结果天然满足"无负数、除法真分数"；去重 key 与打印文本通过 <code data-page-node-id="hdaAOX7lGwv6IzbSRV61rK">parser</code> 可互相无损还原，保证"文件中的题"与"去重判定"是同一道题；判分只依赖重新求值与精确分数相等，独立于生成逻辑，互不污染。</p>
 
-<hr>
+<hr data-page-node-id="ZmcRFCJYJaFA3DOgU3SBlm">
 
-<h2>6. PSP2.1 实际耗时（开发后）</h2>
-<table>
-  <thead><tr><th>PSP2.1 阶段</th><th>实际时间（分钟）</th></tr></thead>
-  <tbody>
-    <tr><td>Planning · 需求理解与拆解</td><td>40</td></tr>
-    <tr><td>Development · 设计（类结构、算法）</td><td>80</td></tr>
-    <tr><td>Development · 编码实现</td><td>120</td></tr>
-    <tr><td>Development · 代码复审</td><td>35</td></tr>
-    <tr><td>Development · 测试与验证</td><td>75</td></tr>
-    <tr><td>Reporting · 效能分析</td><td>40</td></tr>
-    <tr><td>Reporting · 博客撰写</td><td>150</td></tr>
-    <tr><td>Postmortem · 项目总结</td><td>30</td></tr>
-    <tr><td><strong>合计</strong></td><td><strong>570</strong></td></tr>
+<h2 data-page-node-id="MxvgkF8ePIfG6yEASYPIRi">6. PSP2.1 实际耗时（开发后）</h2>
+<table data-page-node-id="ZEFoDaFNEGklGvEAH1GMpB">
+  <thead data-page-node-id="tMoKr9sAfqpPK02U7BOg7a"><tr data-page-node-id="cUaa2r4pheUweTSM8NIZcR"><th data-page-node-id="NWpKwSCJAxIk1vCg0LNnxh">PSP2.1 阶段</th><th data-page-node-id="xuFV18b13E4qpBl2ldfHf1">实际时间（分钟）</th></tr></thead>
+  <tbody data-page-node-id="v13PCSh4AAYJh64sk2lo19">
+    <tr data-page-node-id="gPZ55Q9kMALNvdNzfPC48g"><td data-page-node-id="FDvCNmCXl8zGj363PVdBkN">Planning · 需求理解与拆解</td><td data-page-node-id="E08TJ10pfrIpmiQHRBZpnh">40</td></tr>
+    <tr data-page-node-id="QHuDlS4cwigms4vHzgIHau"><td data-page-node-id="kZE4wXU12tmfGCddqNRaBw">Development · 设计（类结构、算法）</td><td data-page-node-id="rWCyxG9ipGwhEULiAFg73N">80</td></tr>
+    <tr data-page-node-id="bMLjIUT9E2DnBMxQay3LeM"><td data-page-node-id="Aykl6bqGXrGenwY67APMqL">Development · 编码实现</td><td data-page-node-id="klD1My2IWxvACFvFs3tGFU">120</td></tr>
+    <tr data-page-node-id="jatHohLs2DcnTHtNmscPVJ"><td data-page-node-id="MbyyyuuCOncLRCxiDZjUTI">Development · 代码复审</td><td data-page-node-id="0wG3WoeHKw3pL9fA4W96Cw">35</td></tr>
+    <tr data-page-node-id="Cc1C6UTqDqwacNbxAc2GND"><td data-page-node-id="SDT9sNj4FKuRTxhhF4hctX">Development · 测试与验证</td><td data-page-node-id="MtqlwHaVjT30NWDFg8BqQn">75</td></tr>
+    <tr data-page-node-id="DvN9Wi0iDqnknvXEhMOVFw"><td data-page-node-id="lAwz4qA4vECCr5MuypmYnN">Reporting · 效能分析</td><td data-page-node-id="LwSuTF5Uy8rOdP94I0sDFb">40</td></tr>
+    <tr data-page-node-id="KcjEqmdCHKpOIM9IpItvte"><td data-page-node-id="l7IaGI3QmCDAhzePLHEcjm">Reporting · 博客撰写</td><td data-page-node-id="qihQo8sGEsymuidGJQRD5B">150</td></tr>
+    <tr data-page-node-id="ui6EdGGGoK5LBInSAewovA"><td data-page-node-id="rfPewoNGlf8QuPDdbRSDCP">Postmortem · 项目总结</td><td data-page-node-id="BSvlBRYeLFAAHkl2VatBmo">30</td></tr>
+    <tr data-page-node-id="Wmmr4nCvGvdJ7ofEgOMZk0"><td data-page-node-id="fjngK0l3EoSQNAdlp6Pwf6"><strong data-page-node-id="CEboDn4f9k5SMAMZ2AEPZA">合计</strong></td><td data-page-node-id="QBs0USqVGSs6te5pbyd5CG"><strong data-page-node-id="9PiPO4lBIc7bUAHQhJEfXr">570</strong></td></tr>
   </tbody>
 </table>
 
-<hr>
+<hr data-page-node-id="RQ97gDOdfayh7NzCNQg8jV">
 
-<h2>7. 项目小结与结对感受</h2>
+<h2 data-page-node-id="8AH03TtCPLYVZxcSEyBSWx">7. 项目小结与结对感受</h2>
 
-<h3>7.1 成败得失</h3>
-<ul>
-  <li><strong>得</strong>：把"判重"理解成"递归规范化 + 同层排序、不跨层展平"，是这次最关键的认知，避免了一个常见误区；用 Python 原型先验证核心算法，再落地 C++，显著降低了调试成本。</li>
-  <li><strong>失 / 教训</strong>：最初低估了"约束 + 随机"的组合在极小 <code>-r</code> 下的丢弃率，差点写出会卡死的实现；以后遇到"随机 + 强约束"要先想清楚重试上限与空间上界。</li>
+<h3 data-page-node-id="QDN8JGGG6bcxXiu2hgqSjd">7.1 成败得失</h3>
+<ul data-page-node-id="HHY8k3cIYjvjSU3UDM3c0n">
+  <li data-page-node-id="MoMJxZBRQetqIK4kyp4kbn"><strong data-page-node-id="AvyVRSeppEMo0LOiKdkrqK">得</strong>：把"判重"理解成"递归规范化 + 同层排序、不跨层展平"，是这次最关键的认知，避免了一个常见误区；用 Python 原型先验证核心算法，再落地 C++，显著降低了调试成本。</li>
+  <li data-page-node-id="Dv2s8K2UrGatfMXSQOHqKG"><strong data-page-node-id="18W5cA7IYz2jXmWYueHeM5">失 / 教训</strong>：最初低估了"约束 + 随机"的组合在极小 <code data-page-node-id="zFjD2nZfjzjCPmI4f8NULL">-r</code> 下的丢弃率，差点写出会卡死的实现；以后遇到"随机 + 强约束"要先想清楚重试上限与空间上界。</li>
 </ul>
 
-<h3>7.2 结对感受</h3>
-<ul>
-  <li>翁佳华：负责需求拆解与测试用例设计，强调整数边界（<code>-r 1</code>）和"不能编造数据"的严谨性，帮我们避开了多个坑。</li>
-  <li>廖颖欣：负责算法实现与性能优化，提出"自底向上约束构造"替代"先生成后筛"，把生成效率打到毫秒级。</li>
-  <li>互相建议：需求文档里的"真分数"其实是"含带分数的分数记号"，这个歧义差点导致格式写错——多读两遍样例很有必要。</li>
+<h3 data-page-node-id="5Lq5pZPBfoDfZ4StrfFnlq">7.2 结对感受</h3>
+<ul data-page-node-id="DlTjgrXkMW8pFHh3Dw6oWF">
+  <li data-page-node-id="hpYI6Nk2YP70Jc4vxH5ZGQ">翁佳华：负责需求拆解与测试用例设计，强调整数边界（<code data-page-node-id="o2H0uujX46YJbJItae3EuV">-r 1</code>）和"不能编造数据"的严谨性，帮我们避开了多个坑。</li>
+  <li data-page-node-id="pRFtQNPZfIrvidKtGfArgy">廖颖欣：负责算法实现与性能优化，提出"自底向上约束构造"替代"先生成后筛"，把生成效率打到毫秒级。</li>
+  <li data-page-node-id="D504HBgcVsHq4rtlYL4GPv">互相建议：需求文档里的"真分数"其实是"含带分数的分数记号"，这个歧义差点导致格式写错——多读两遍样例很有必要。</li>
 </ul>
 
-<hr>
+<hr data-page-node-id="spzm3VF0gHYzoqnrLQ3vGR">
 
-<h2>8. 运行说明（给评测老师）</h2>
-<pre><code># Release / x64 生成后：
+<h2 data-page-node-id="1AzbIJVZFTn289HEoyXWJt">8. 运行说明（给评测老师）</h2>
+<pre data-page-node-id="K6DVCd2D3dnanh1xM5vfgz"><code data-page-node-id="RaezedBQK6bvC9cny4Dp5o"># Release / x64 生成后：
 Myapp.exe -n 10 -r 10          # 出题，生成 Exercises.txt / Answers.txt
 Myapp.exe -e Exercises.txt -a Answers.txt   # 判分，生成 Grade.txt</code></pre>
 
