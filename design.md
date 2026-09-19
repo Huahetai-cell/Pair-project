@@ -6,7 +6,7 @@
 
 - 成员一：翁佳华（学号 3224004345）
 - 成员二：廖颖欣
-- GitHub 仓库地址：https://github.com/Huahetai-cell/ （仓库名待补全）
+- GitHub 仓库地址：https://github.com/Huahetai-cell/Pair-project
 
 ---
 

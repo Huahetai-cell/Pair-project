@@ -1,7 +1,7 @@
 # 小学四则运算题目生成器（Myapp）
 
 结对项目 · 成员：翁佳华、廖颖欣
-GitHub：https://github.com/Huahetai-cell/ （仓库名待补全）
+GitHub：https://github.com/Huahetai-cell/Pair-project
 
 命令行程序，自动生成小学四则运算题目（自然数 / 真分数 / 带分数，±×÷，括号，每题运算符 ≤ 3），
 并能对已有题目与答案进行判分统计。
