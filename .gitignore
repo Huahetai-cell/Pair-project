@@ -1,0 +1,8 @@
+build/
+out/
+cmake-build-*/
+# 生成的题目/答案/判分产物（不要入库）
+Exercises.txt
+Answers.txt
+Grade.txt
+.vs/
